@@ -2,7 +2,9 @@ package seg3102
 
 class Customer extends User{
 
-    static hasOne = [visitingList: VisitingList, creditCard: CreditCard]
+    CreditCard creditCard
+    VisitingList visitingList
+
     static hasMany = [rentRecord: RentRecord]
 
     static constraints = {

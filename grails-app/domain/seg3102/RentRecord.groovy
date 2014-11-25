@@ -8,8 +8,8 @@ class RentRecord {
     double rent
     Date rentalDate
     Time rentalTime
-
-    static hasOne = [property: Property, customer: Customer]
+    Customer customer
+    Property property
 
     static constraints = {
     }

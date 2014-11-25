@@ -8,8 +8,8 @@ class Property {
     int numOtherRooms
     double rent
     boolean deleteStatus
+    Address address
 
-    static hasOne = [address: Address]
     static hasMany = [history: History, visitingList: VisitingList, rentRecord: RentRecord, photos: Photos]
 
     static constraints = {
