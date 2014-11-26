@@ -12,6 +12,14 @@
 		<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   		<asset:stylesheet src="application.css"/>
 		<asset:javascript src="application.js"/>
 		<g:layoutHead/>
