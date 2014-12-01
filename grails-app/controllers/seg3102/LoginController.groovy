@@ -6,14 +6,13 @@ class LoginController {
 
     def authenticate = {
         def user = User.findByUserName(params.username)
-        if(user){
+        if(user && (user.password == params.password)){
             session.user = user
             flash.message = "Hello ${user.givenName}!"
-            redirect(controller:"home")
+            return redirect(controller:"home")
         }else{
-            render("Failed Login")
-            //flash.message = "Sorry, ${params.username}. Please try again."
-            //redirect(action:"index")
+            flash.message = "Sorry, ${params.username}. Please try again."
+            redirect(action:"index")
         }
     }
 }

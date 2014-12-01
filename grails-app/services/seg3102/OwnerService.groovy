@@ -20,6 +20,7 @@ class OwnerService {
                     givenName: ownerAttributes.givenName,
                     lastName: ownerAttributes.lastName,
                     userName: ownerAttributes.userName,
+                    password: ownerAttributes.password,
                     creationDate: ownerAttributes.creationDate,
                     deleted: ownerAttributes.deleted
             )

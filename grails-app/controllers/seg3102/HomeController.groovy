@@ -6,7 +6,18 @@ class HomeController {
         if (session.user == null){
             redirect(controller:"login")
         }else{
-            render view:"index"
+            def userType
+            if(session.user.instanceOf(Agent)){
+                userType = "agent"
+            }else if (session.user.instanceOf(Owner)){
+                userType = "owner"
+            }else if(session.user.instanceOf(Customer)){
+                userType = "customer"
+            }
+            session.user
+            render view:"index", model: [userType:userType]
         }
     }
+
+
 }

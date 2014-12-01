@@ -9,9 +9,9 @@
 <html>
 <head>
     <title></title>
+    <meta name="layout" content="${userType}"/>
 </head>
 
 <body>
-<h1>HomePage</h1>
 </body>
 </html>
