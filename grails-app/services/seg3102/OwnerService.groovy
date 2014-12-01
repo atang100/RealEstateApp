@@ -29,5 +29,21 @@ class OwnerService {
         }
     }
 
+    def updateOwner(Map ownerAttributes) {
+
+        try {
+            Owner owner = Owner.get(ownerAttributes.userId)
+            if (ownerAttributes.givenName != null) {
+                owner.givenName = ownerAttributes.givenName
+            }
+            if (ownerAttributes.lastName != null) {
+                owner.lastName = ownerAttributes.lastName
+            }
+            owner.save()
+        } catch (Exception e) {
+            System.println("Failure to create User of Type Owner!")
+        }
+    }
+
 
 }
