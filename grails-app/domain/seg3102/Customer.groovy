@@ -8,5 +8,6 @@ class Customer extends User{
     static hasMany = [rentRecord: RentRecord]
 
     static constraints = {
+        creditCard nullable: true
     }
 }

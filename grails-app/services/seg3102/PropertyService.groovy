@@ -2,6 +2,7 @@ package seg3102
 
 import grails.transaction.Transactional
 import java.util.ArrayList;
+import java.sql.Date;
 
 @Transactional
 class PropertyService {
@@ -157,4 +158,9 @@ class PropertyService {
         }
     }
 
+    def viewVisitHistory(Date startDate, Date endDate, String propertyId) {
+        Property property = Property.get(propertyId)
+        ArrayList <History> historyList = History.findAllByStartDateGreaterThanAndEndDateLessThan(startDate,endDate)
+        return historyList
+    }
 }

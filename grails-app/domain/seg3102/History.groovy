@@ -1,9 +1,11 @@
 package seg3102
 
+import java.sql.Date
+
 class History {
 
-    String startMonth
-    String endMonth
+    Date startDate
+    Date endDate
     int monthVisits
     int reportingVisits
 

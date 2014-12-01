@@ -64,4 +64,19 @@ class OwnerService {
 
         }
     }
+
+    /**
+     *  VIEW OWNER ACCOUNT (NOT REALLY USEFUL)
+     *
+     * @param userName
+     * @return
+     */
+    public viewAccount(String userName) {
+        try {
+            Owner owner = Owner.findByUserName(userName)
+            return owner
+        } catch (Exception e) {
+
+        }
+    }
 }
