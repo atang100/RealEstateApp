@@ -47,10 +47,36 @@ class PropertyService {
      * Takes in a list of search criteria, then searches for
      * properties based on those criteria.
      *
+     * ONLY CRITERIA THIS WILL ACCEPT IS CITY, PROVINCE, COUNTRY (CAN INCLUDE MORE THAN ONE OF THESE)
+     *
      * @param searchParameter
      */
-    public ArrayList<Property> findProperty(Map searchCriteria) {
+    public ArrayList<Property> findPropertyByLocation(Map addressParameter) {
 
+        ArrayList<Address> addressList
+        if (addressParameter.city != null && addressParameter.province != null && addressParameter.country != null) {
+            addressList = Address.findAllByCityAndProvinceAndCountry(addressParameter.city, addressParameter.province, addressParameter.country)
+        } else if (addressParameter.province != null && addressParameter.country != null) {
+            addressList = Address.findAllByProvinceAndCountry(addressParameter.province,addressParameter.country)
+        } else if (addressParameter.city != null && addressParameter.country != null) {
+            addressList = Address.findAllByCityAndCountry(addressParameter.city,addressParameter.country)
+        } else if (addressParameter.city != null && addressParameter.province != null) {
+            addressList = Address.findAllByCityAndProvince(addressParameter.city,addressParameter.province)
+        } else if (addressParameter.city != null) {
+            addressList = Address.findAllByCity(addressParameter.city)
+        } else if (addressParameter.city != null) {
+            addressList = Address.findAllByCity(addressParameter.province)
+        } else if (addressParameter.city != null) {
+            addressList = Address.findAllByCity(addressParameter.country)
+        } else {
+            addressList = Address.findAll()
+        }
+
+        ArrayList<Property> propertyList = new ArrayList()
+        for (a in addressList) {
+            propertyList.add(a.getProperty())
+        }
+        return propertyList
     }
 
     /**
