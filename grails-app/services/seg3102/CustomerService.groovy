@@ -13,6 +13,7 @@ class CustomerService {
                     givenName: customerAttributes.givenName,
                     lastName: customerAttributes.lastName,
                     userName: customerAttributes.userName,
+                    password: customerAttributes.password,
                     creationDate: customerAttributes.creationDate,
                     deleted: customerAttributes.deleted
             )

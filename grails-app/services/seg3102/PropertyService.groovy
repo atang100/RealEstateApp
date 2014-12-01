@@ -39,10 +39,17 @@ class PropertyService {
                 deleteStatus: propertyParameter.deleteStatus,
                 address: address
         )
+
+        Owner owner = Owner.findByUserName(userName)
+        owner.addToProperty(property)
+
+        owner.save()
+        address.save()
+        property.save()
     }
 
     /**
-     * FIND PROPERTY - RUI
+     * BROWSE PROPERTY BY LOCATION
      *
      * Takes in a list of search criteria, then searches for
      * properties based on those criteria.
@@ -51,7 +58,7 @@ class PropertyService {
      *
      * @param searchParameter
      */
-    public ArrayList<Property> findPropertyByLocation(Map addressParameter) {
+    public ArrayList<Property> browsePropertyByLocation(Map addressParameter) {
 
         ArrayList<Address> addressList
         if (addressParameter.city != null && addressParameter.province != null && addressParameter.country != null) {

@@ -40,11 +40,28 @@ class OwnerService {
             if (ownerAttributes.lastName != null) {
                 owner.lastName = ownerAttributes.lastName
             }
+            if (ownerAttributes.password != null) {
+                owner.password = ownerAttributes.password
+            }
             owner.save()
         } catch (Exception e) {
             System.println("Failure to create User of Type Owner!")
         }
     }
 
+    /**
+     * RETURNS ALL OF OWNER'S PROPERTIES
+     *
+     * @param userName
+     * @return
+     */
+    public ArrayList<Property> ownerViewProperties(String userName) {
+        try {
+            Owner owner = Owner.get(userName)
+            ArrayList<Property> propertyList = owner.property
+            return propertyList
+        } catch (Exception e) {
 
+        }
+    }
 }
