@@ -30,6 +30,7 @@ class PropertyService {
                 province: addressParameter.province,
                 country: addressParameter.country
         )
+        address.save()
         //Property Constructor
         Property property = new Property(
                 type: propertyParameter.type,
@@ -40,13 +41,11 @@ class PropertyService {
                 deleteStatus: propertyParameter.deleteStatus,
                 address: address
         )
-
+        property.save()
         Owner owner = Owner.findByUserName(userName)
         owner.addToProperty(property)
 
         owner.save()
-        address.save()
-        property.save()
     }
 
     /**
@@ -65,11 +64,11 @@ class PropertyService {
         if (addressParameter.city != null && addressParameter.province != null && addressParameter.country != null) {
             addressList = Address.findAllByCityAndProvinceAndCountry(addressParameter.city, addressParameter.province, addressParameter.country)
         } else if (addressParameter.province != null && addressParameter.country != null) {
-            addressList = Address.findAllByProvinceAndCountry(addressParameter.province,addressParameter.country)
+            addressList = Address.findAllByProvinceAndCountry(addressParameter.province, addressParameter.country)
         } else if (addressParameter.city != null && addressParameter.country != null) {
-            addressList = Address.findAllByCityAndCountry(addressParameter.city,addressParameter.country)
+            addressList = Address.findAllByCityAndCountry(addressParameter.city, addressParameter.country)
         } else if (addressParameter.city != null && addressParameter.province != null) {
-            addressList = Address.findAllByCityAndProvince(addressParameter.city,addressParameter.province)
+            addressList = Address.findAllByCityAndProvince(addressParameter.city, addressParameter.province)
         } else if (addressParameter.city != null) {
             addressList = Address.findAllByCity(addressParameter.city)
         } else if (addressParameter.city != null) {
@@ -96,12 +95,11 @@ class PropertyService {
      * @param propertyId
      */
     public boolean deleteProperty(String propertyId) {
-        try{
+        try {
             Property property = Property.get(propertyId)
             p.delete()
             return true
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             return false
         }
     }
@@ -159,8 +157,37 @@ class PropertyService {
     }
 
     def viewVisitHistory(Date startDate, Date endDate, String propertyId) {
-        Property property = Property.get(propertyId)
-        ArrayList <History> historyList = History.findAllByStartDateGreaterThanAndEndDateLessThan(startDate,endDate)
-        return historyList
+        try {
+            Property property = Property.get(propertyId)
+            ArrayList<History> historyList = History.findAllByStartDateGreaterThanAndEndDateLessThan(startDate, endDate)
+            return historyList
+        } catch (Exception e) {
+
+        }
     }
+
+    def rentProperty(String propertyId, String userName, Map rentAttributes) {
+        try {
+            Customer customer = Customer.findByUserName(userName)
+            VisitingList visitingList = customer.visitingList
+            Property property = visitingList.property.find { it.id = propertyId }
+
+            RentRecord rentRecord = new RentRecord(
+                    emailAddress: rentAttributes.emailAddress,
+                    rent: property.rent,
+                    rentalDate: rentAttributes.rentalDate,
+                    rentalTime: rentAttributes.rentalTime
+            )
+            rentRecord.save()
+            property.addToRentRecord(rentRecord)
+            customer.addToRentRecord(rentRecord)
+            property.save()
+            customer.save()
+
+            return true
+        } catch (Exception e) {
+            return false
+        }
+    }
+
 }

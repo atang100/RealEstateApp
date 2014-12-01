@@ -35,10 +35,9 @@ class CustomerService {
                     expiryMonth: creditCardAttributes.expiryMonth,
                     expiryYear: creditCardAttributes.expireYear
             )
-
+            creditCard.save()
             Customer customer = Customer.findByUserName(userName)
             customer.creditCard = creditCard
-            creditCard.save()
             customer.save()
 
         } catch (Exception e) {
