@@ -26,6 +26,9 @@
                 <g:link controller="users" action="index" class="btn-default">
                     <button type="button" class="btn btn-default navbar-btn">Add User</button>
                 </g:link>
+                <g:link controller="logout" action="index" class="btn-default">
+                    <button type="button" class="btn btn-default navbar-btn">Log Out</button>
+                </g:link>
             </div>
         </nav>
     </body>

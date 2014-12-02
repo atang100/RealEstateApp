@@ -29,6 +29,9 @@
                 <g:link controller="properties" action="show" class="btn-default">
                     <button type="button" class="btn btn-default navbar-btn">View Properties</button>
                 </g:link>
+                <g:link controller="logout" action="index" class="btn-default">
+                    <button type="button" class="btn btn-default navbar-btn">Log Out</button>
+                </g:link>
             </div>
         </nav>
     </body>
