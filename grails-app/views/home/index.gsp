@@ -9,9 +9,15 @@
 <html>
 <head>
     <title></title>
-    <meta name="layout" content="${userType}"/>
+    <g:render template="${userType}"/>
 </head>
 
 <body>
+    <div class="container" style="margin-top:70px">
+        <div class="jumbotron">
+            <h1>Welcome to Online Property Rental!</h1>
+            <p>The premier web hosted realty application.</p>
+        </div>
+    </div>
 </body>
 </html>
