@@ -114,9 +114,11 @@ class PropertyService {
     }
 
     def updateProperty(Map propertyParameter, Map addressParameter, String userName) {
-
+        println(propertyParameter)
+        println(addressParameter)
         try {
             Property property = Property.get(propertyParameter.propertyId)
+            println(property)
             if (propertyParameter.type != null) {
                 property.type = propertyParameter.type
             }

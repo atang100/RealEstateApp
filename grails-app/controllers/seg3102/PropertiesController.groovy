@@ -8,9 +8,9 @@ class PropertiesController {
     def index() {}
 
     def show() {
-        //def myProperties = ownerService.ownerViewProperties((String)session.user.userName)
-        //println(myProperties)
-        //render view:"show", model: [properties:properties]
+        def myProperties = ownerService.ownerViewProperties((String)session.user.userName)
+        println(myProperties)
+        render view:"show", model: [myProperties:myProperties]
     }
 
     def create() {
@@ -57,8 +57,9 @@ class PropertiesController {
         propertyMap.numOtherRooms = params.numOtherRooms
         propertyMap.rent = params.rent
         propertyMap.deleteStatus = false
+        propertyMap.propertyId = propertyId
 
-        propertyService.updateProperty(propertyMap,addressMap,propertyId)
+        propertyService.updateProperty(propertyMap,addressMap,session.user.userName)
 
         redirect(controller:"properties", action:"show")
     }
