@@ -6,28 +6,29 @@ import seg3102.User
 class BootStrap {
 
     def init = { servletContext ->
-        if(!User.count()){
+        if (!User.count()) {
             Owner owner = new Owner(
-                    givenName:"John",
+                    givenName: "John",
                     lastName: "Madden",
                     userName: "JohnMad",
+                    password: "1234",
                     creationDate: new Date(),
                     deleted: false
             )
-            owner.password = "kony2012"
-            owner.save(failOnError:true)
+            owner.save(failOnError: true)
 
-           Agent agent = new Agent(
-                    givenName:"Jason",
+            Agent agent = new Agent(
+                    givenName: "Jason",
                     lastName: "Statham",
                     userName: "JayStat",
+                    password: "1234",
                     creationDate: new Date(),
                     deleted: false
             )
-            agent.password = "rambleon"
-            agent.save(failOnError:true)
+            agent.save(failOnError: true)
         }
     }
+
     def destroy = {
     }
 }

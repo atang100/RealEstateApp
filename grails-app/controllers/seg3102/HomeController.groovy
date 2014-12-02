@@ -8,13 +8,12 @@ class HomeController {
         }else{
             def userType
             if(session.user.instanceOf(Agent)){
-                userType = "agent"
+                userType = "agentLayout"
             }else if (session.user.instanceOf(Owner)){
-                userType = "owner"
-            }else if(session.user.instanceOf(Customer)){
-                userType = "customer"
+                userType = "ownerLayout"
+            }else if(session.user.instanceOf(Customer)) {
+                userType = "customerLayout"
             }
-            session.user
             render view:"index", model: [userType:userType]
         }
     }
