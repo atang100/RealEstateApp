@@ -10,7 +10,7 @@ class Address {
     String province
     String country
 
-    static belongsTo = [property: Property]
+    static belongsTo = [propertys: Property]
 
     static constraints = {
         aptNumber nullable: true

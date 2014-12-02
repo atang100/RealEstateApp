@@ -20,32 +20,37 @@ class PropertyService {
      */
     def addProperty(Map propertyParameter, Map addressParameter, String userName) {
 
-        //Address Constructor
-        Address address = new Address(
-                streetName: addressParameter.streetName,
-                streetNumber: addressParameter.streetNumber,
-                aptNumber: addressParameter.aptNumber,
-                city: addressParameter.city,
-                postalCode: addressParameter.postalCode,
-                province: addressParameter.province,
-                country: addressParameter.country
-        )
-        address.save()
-        //Property Constructor
-        Property property = new Property(
-                type: propertyParameter.type,
-                numBedrooms: propertyParameter.numBedrooms,
-                numBathrooms: propertyParameter.numBathrooms,
-                numOtherRooms: propertyParameter.numOtherRooms,
-                rent: propertyParameter.rent,
-                deleteStatus: propertyParameter.deleteStatus,
-                address: address
-        )
-        property.save()
-        Owner owner = Owner.findByUserName(userName)
-        owner.addToProperty(property)
+        try {
+            Owner owner = Owner.findByUserName(userName)
 
-        owner.save()
+            def address = new Address(
+                    streetName: addressParameter.streetName,
+                    streetNumber: addressParameter.streetNumber,
+                    aptNumber: addressParameter.aptNumber,
+                    city: addressParameter.city,
+                    postalCode: addressParameter.postalCode,
+                    province: addressParameter.province,
+                    country: addressParameter.country
+            )
+
+            def myProperty = new Property(
+                    type: propertyParameter.type,
+                    numBedrooms: propertyParameter.numBedrooms,
+                    numBathrooms: propertyParameter.numBathrooms,
+                    numOtherRooms: propertyParameter.numOtherRooms,
+                    rent: propertyParameter.rent,
+                    deleteStatus: propertyParameter.deleteStatus,
+                    address: address
+            )
+
+            myProperty.save()
+
+            owner.addToPropertys(myProperty)
+            owner.save()
+
+        } catch (Exception e) {
+            println("ERRRROOORRR" + e)
+        }
     }
 
     /**

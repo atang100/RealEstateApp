@@ -14,7 +14,7 @@ class HomeController {
             }else if(session.user.instanceOf(Customer)) {
                 userType = "customerLayout"
             }
-            render view:"index", model: [userType:userType]
+            render (view:"index", model: [userType:userType])
         }
     }
 

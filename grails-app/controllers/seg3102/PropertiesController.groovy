@@ -8,11 +8,13 @@ class PropertiesController {
     def index() {}
 
     def show() {
-        def properties = ownerService.ownerViewProperties(session.user.userName)
+        def myProperties = ownerService.ownerViewProperties((String)session.user.userName)
+        println(myProperties)
         render view:"show", model: [properties:properties]
     }
 
     def create() {
+
         Map addressMap = [:];
         Map propertyMap = [:];
 

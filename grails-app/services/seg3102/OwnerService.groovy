@@ -57,11 +57,11 @@ class OwnerService {
      */
     public ArrayList<Property> ownerViewProperties(String userName) {
         try {
-            Owner owner = Owner.get(userName)
-            ArrayList<Property> propertyList = owner.property
+            Owner owner = Owner.findByUserName(userName)
+            ArrayList<Property> propertyList = owner.propertys
             return propertyList
         } catch (Exception e) {
-
+            println("ERRRORRRR" + e)
         }
     }
 
