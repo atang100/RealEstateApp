@@ -40,16 +40,20 @@ class PropertyService {
                     numOtherRooms: propertyParameter.numOtherRooms,
                     rent: propertyParameter.rent,
                     deleteStatus: propertyParameter.deleteStatus,
-                    address: address
+                    address: address,
+                    owner: owner
             )
 
-            myProperty.save()
+            address.propertys = myProperty
+            address.save(failOnError: true)
+
+            myProperty.save(failOnError:true)
 
             owner.addToPropertys(myProperty)
-            owner.save()
+            owner.save(failOnError:true)
 
         } catch (Exception e) {
-            println("ERRRROOORRR" + e)
+            println("ERRRROOORRR " + e)
         }
     }
 

@@ -14,5 +14,6 @@ class Property {
     static hasMany = [history: History, visitingList: VisitingList, rentRecord: RentRecord, photos: Photos]
     static belongsTo = [owner: Owner, visitingList: VisitingList]
     static constraints = {
+        visitingList nullable: true
     }
 }

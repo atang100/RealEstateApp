@@ -8,9 +8,9 @@ class PropertiesController {
     def index() {}
 
     def show() {
-        def myProperties = ownerService.ownerViewProperties((String)session.user.userName)
-        println(myProperties)
-        render view:"show", model: [properties:properties]
+        //def myProperties = ownerService.ownerViewProperties((String)session.user.userName)
+        //println(myProperties)
+        //render view:"show", model: [properties:properties]
     }
 
     def create() {
@@ -38,7 +38,34 @@ class PropertiesController {
         redirect(controller:"properties", action:"show")
     }
 
-    def update() {}
+    def update() {
+        def propertyId = params.propertyId
+        Map addressMap = [:];
+        Map propertyMap = [:];
 
-    def destroy() {}
+        addressMap.streetName = params.streetName
+        addressMap.streetNumber = params.streetNumber
+        addressMap.aptNumber = params.aptNumber
+        addressMap.city = params.city
+        addressMap.postalCode = params.postalCode
+        addressMap.province = params.province
+        addressMap.country = params.country
+
+        propertyMap.type = params.type
+        propertyMap.numBedrooms = params.numBedrooms
+        propertyMap.numBathrooms = params.numBathrooms
+        propertyMap.numOtherRooms = params.numOtherRooms
+        propertyMap.rent = params.rent
+        propertyMap.deleteStatus = false
+
+        propertyService.updateProperty(propertyMap,addressMap,propertyId)
+
+        redirect(controller:"properties", action:"show")
+    }
+
+    def destroy() {
+        def propertyId = params.propertyId
+        propertyService.deleteProperty(propertyId)
+        redirect(controller:"properties", action:"show")
+    }
 }
