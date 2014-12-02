@@ -1,7 +1,6 @@
 package seg3102
-import seg3102.AgentService
 
-class CreateUserController {
+class UsersController {
 
     def CustomerService
     def OwnerService
@@ -9,7 +8,7 @@ class CreateUserController {
 
     def index() {}
 
-    def addUser(){
+    def create(){
         def type = params.userType
         Map map = [:];
         if(type == "Agent"){
@@ -40,7 +39,7 @@ class CreateUserController {
             customerService.createCustomer(map)//null pointer exception here
             flash.message = "Customer created."
         }
-        redirect(controller:"createUser")
+        redirect(controller:"users")
     }
 
 

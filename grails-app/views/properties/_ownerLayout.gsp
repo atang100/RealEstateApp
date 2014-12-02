@@ -23,8 +23,11 @@
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="container">
                 <a class="navbar-brand" href="#">OPR</a>
-                <g:link controller="createUser" action="index" class="btn-default">
-                    <button type="button" class="btn btn-default navbar-btn">Add User</button>
+                <g:link controller="properties" action="index" class="btn-default">
+                    <button type="button" class="btn btn-default navbar-btn">Add Property</button>
+                </g:link>
+                <g:link controller="properties" action="show" class="btn-default">
+                    <button type="button" class="btn btn-default navbar-btn">View Properties</button>
                 </g:link>
             </div>
         </nav>
