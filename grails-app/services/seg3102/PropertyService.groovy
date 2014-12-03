@@ -91,7 +91,7 @@ class PropertyService {
         ArrayList<Propertys> propertyList = new ArrayList()
         if (addressList != null) {
             for (a in addressList) {
-                Propertys myProperty = a.getProperty()
+                Propertys myProperty = a.propertys
                 if (myProperty != null) {
                     if (myProperty.deleteStatus == false) {
                         propertyList.add(myProperty)
