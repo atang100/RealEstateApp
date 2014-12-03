@@ -35,6 +35,8 @@ class PropertiesController {
 
         propertyService.addProperty(propertyMap,addressMap,session.user.userName)
 
+        flash.message = "Property Successfully Created"
+
         redirect(controller:"properties", action:"show")
     }
 

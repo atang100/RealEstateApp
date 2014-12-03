@@ -13,7 +13,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
-
+<g:if test="${flash.message}">
+    <div class="alert alert-success" role="alert" style="margin-top:50px">
+        ${flash.message}
+    </div>
+</g:if>
     <body>
         <table class="table table-striped" style="margin-top:70px">
             <th>Street Name</th>
@@ -23,6 +27,7 @@
             <th>Bedrooms</th>
             <th>Bathrooms</th>
             <th>Rent</th>
+            <th></th>
             <th></th>
             <g:each in="${myProperties}" var="property">
                 <tr>
@@ -37,6 +42,12 @@
                         <g:link controller="visitingList" action="deleteFromList" class="btn-default">
                             <g:hiddenField name="propertyId" value="${property.properties.id}" />
                             <button type="button" class="btn btn-default">delete</button>
+                        </g:link>
+                    </td>
+                    <td>
+                        <g:link controller="rent" action="index" class="btn-default">
+                            <g:hiddenField name="propertyId" value="${property.properties.id}" />
+                            <button type="button" class="btn btn-default">rent</button>
                         </g:link>
                     </td>
                 </tr>

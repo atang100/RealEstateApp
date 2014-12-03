@@ -13,6 +13,11 @@
 </head>
 
 <body>
+    <g:if test="${flash.message}">
+        <div class="alert alert-success" role="alert" style="margin-top:50px">
+            ${flash.message}
+        </div>
+    </g:if>
     <div class="container" style="margin-top:70px">
         <div class="jumbotron">
             <h1>Welcome to Online Property Rental!</h1>
