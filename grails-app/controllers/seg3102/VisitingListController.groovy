@@ -22,7 +22,7 @@ class VisitingListController {
     }
 
     def show() {
-        def visitingList = visitingService.viewVisitingList(params.userName)
+        def visitingList = visitingListService.viewVisitingList(params.userName)
         render(view:"show", model: [myProperties:visitingList])
     }
 

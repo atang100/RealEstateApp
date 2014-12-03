@@ -25,7 +25,7 @@ class BootStrap {
                     creationDate: new Date(),
                     deleted: false
             )
-            String string = agent.save(failOnError: true)
+            agent.save(failOnError: true)
         }
     }
 
