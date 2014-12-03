@@ -27,7 +27,7 @@
                         <strong> Enter User Information</strong>
                     </div>
                     <div class="panel-body">
-                        <g:form controller="properties" action="create">
+                        <g:form controller="propertys" action="create">
                             <fieldset>
                             <div class="row">
                                 <div class="col-sm-12 col-md-10  col-md-offset-1 ">

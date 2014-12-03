@@ -14,6 +14,7 @@ class AgentService {
                     lastName: agentAttributes.lastName,
                     userName: agentAttributes.userName,
                     password: agentAttributes.password,
+                    email: agentAttributes.email,
                     creationDate: agentAttributes.creationDate,
                     deleted: agentAttributes.deleted
             )

@@ -1,6 +1,6 @@
 package seg3102
 
-class Customer extends User{
+class Customer extends Person{
 
     CreditCard creditCard
     VisitingList visitingList

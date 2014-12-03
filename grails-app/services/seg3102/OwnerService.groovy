@@ -21,6 +21,7 @@ class OwnerService {
                     lastName: ownerAttributes.lastName,
                     userName: ownerAttributes.userName,
                     password: ownerAttributes.password,
+                    email: ownerAttributes.email,
                     creationDate: ownerAttributes.creationDate,
                     deleted: ownerAttributes.deleted
             )
@@ -34,14 +35,12 @@ class OwnerService {
 
         try {
             Owner owner = Owner.get(ownerAttributes.userId)
-            if (ownerAttributes.givenName != null) {
-                owner.givenName = ownerAttributes.givenName
-            }
-            if (ownerAttributes.lastName != null) {
-                owner.lastName = ownerAttributes.lastName
-            }
-            if (ownerAttributes.password != null) {
+
+            if (ownerAttributes.password != "") {
                 owner.password = ownerAttributes.password
+            }
+            if (ownerAttributes.email != "") {
+                owner.email = ownerAttributes.email
             }
             owner.save()
         } catch (Exception e) {

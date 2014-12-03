@@ -17,6 +17,4 @@ class HomeController {
             render (view:"index", model: [userType:userType])
         }
     }
-
-
 }

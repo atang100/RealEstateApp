@@ -16,6 +16,7 @@ class CustomerService {
                     lastName: customerAttributes.lastName,
                     userName: customerAttributes.userName,
                     password: customerAttributes.password,
+                    email: customerAttributes.email,
                     creationDate: customerAttributes.creationDate,
                     deleted: customerAttributes.deleted,
                     visitingList: visitingList
@@ -77,14 +78,11 @@ class CustomerService {
         try {
 
             Customer customer = Customer.get(customerAttributes.userId)
-            if (customerAttributes.givenName != null) {
-                customer.givenName = customerAttributes.givenName
-            }
-            if (customerAttributes.lastName != null) {
-                customer.lastName = customerAttributes.lastName
-            }
-            if (customerAttributes.password != null) {
+            if (customerAttributes.password != "") {
                 customer.password = customerAttributes.password
+            }
+            if (customerAttributes.email != "") {
+                customer.email = customerAttributes.email
             }
             customer.save()
             return true

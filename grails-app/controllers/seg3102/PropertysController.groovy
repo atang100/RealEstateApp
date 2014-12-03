@@ -1,6 +1,6 @@
 package seg3102
 
-class PropertiesController {
+class PropertysController {
 
     def OwnerService
     def PropertyService
@@ -37,7 +37,7 @@ class PropertiesController {
 
         flash.message = "Property Successfully Created"
 
-        redirect(controller:"properties", action:"show")
+        redirect(controller:"propertys", action:"show")
     }
 
     def update() {
@@ -63,12 +63,12 @@ class PropertiesController {
 
         propertyService.updateProperty(propertyMap,addressMap)
 
-        redirect(controller:"properties", action:"show")
+        redirect(controller:"propertys", action:"show")
     }
 
-    def destroy() {
+    def setDeleteProperty() {
         def propertyId = params.propertyId
         propertyService.deleteProperty(propertyId)
-        redirect(controller:"properties", action:"show")
+        redirect(controller:"propertys", action:"show")
     }
 }

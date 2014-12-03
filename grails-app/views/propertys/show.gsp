@@ -43,7 +43,7 @@
                 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-sm">
                         <div class="modal-content">
-                            <g:form controller="properties" action="update">
+                            <g:form controller="propertys" action="update">
                                 <g:hiddenField name="propertyId" value="${property.properties.id}" />
                                 <fieldset>
                                     <div class="row">
@@ -121,10 +121,10 @@
                     </div>
                 </div>
                 <td>
-                    <g:link controller="properties" action="destroy" class="btn-default">
+                    <g:form controller="propertys" action="setDeleteProperty">
                         <g:hiddenField name="propertyId" value="${property.properties.id}" />
-                        <button type="button" class="btn btn-default">Delete</button>
-                    </g:link>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </g:form>
                 </td>
             </tr>
         </g:each>

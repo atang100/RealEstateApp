@@ -5,7 +5,7 @@ class LoginController {
     def index() { }
 
     def authenticate = {
-        def user = User.findByUserName(params.username)
+        def user = Person.findByUserName(params.username)
         if(user && (user.password == params.password)){
             session.user = user
             flash.message = "Hello ${user.givenName}!"

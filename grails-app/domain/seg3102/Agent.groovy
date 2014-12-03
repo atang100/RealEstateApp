@@ -1,6 +1,6 @@
 package seg3102
 
-class Agent extends User{
+class Agent extends Person{
 
     //TODO attributes
 

@@ -8,8 +8,8 @@ class UserService {
     def deactivateAccount(String userName) {
 
         try {
-            User user = User.findByUserName(userName)
-            user.deleted = true
+            Person person = Person.findByUserName(userName)
+            person.delete()
         } catch (Exception e) {
 
         }
