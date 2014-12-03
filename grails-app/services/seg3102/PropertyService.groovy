@@ -19,7 +19,7 @@ class PropertyService {
      * @param userName
      */
     def addProperty(Map propertyParameter, Map addressParameter, String userName) {
-
+        log.info("ADD PROPERTY")
         try {
             Owner owner = Owner.findByUserName(userName)
 
@@ -90,7 +90,10 @@ class PropertyService {
 
         ArrayList<Property> propertyList = new ArrayList()
         for (a in addressList) {
-            propertyList.add(a.getProperty())
+            Property myProperty = a.getProperty()
+            if (myProperty.deleteStatus == false) {
+                propertyList.add(myProperty)
+            }
         }
         return propertyList
     }
@@ -106,7 +109,7 @@ class PropertyService {
     public boolean deleteProperty(String propertyId) {
         try {
             Property property = Property.get(propertyId)
-            p.delete()
+            property.deleteStatus = true
             return true
         } catch (Exception e) {
             return false

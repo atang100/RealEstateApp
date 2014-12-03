@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class CustomerService {
 
     def createCustomer(Map customerAttributes) {
-
+        log.info("CREATE CUSTOMER")
         try {
             VisitingList visitingList = new VisitingList()
 
@@ -20,9 +20,10 @@ class CustomerService {
                     deleted: customerAttributes.deleted,
                     visitingList: visitingList
             )
-            customer.save()
+            customer.save(failOnError:true)
         } catch (Exception e) {
             System.println("Failure to create User of Type Customer!")
+            System.println(e)
         }
     }
 
