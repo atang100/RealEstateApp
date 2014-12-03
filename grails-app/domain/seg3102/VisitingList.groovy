@@ -3,7 +3,7 @@ package seg3102
 class VisitingList {
 
     static belongsTo = [customer: Customer]
-    static hasMany = [property: Property]
+    static hasMany = [property: Propertys]
     static constraints = {
     }
 }

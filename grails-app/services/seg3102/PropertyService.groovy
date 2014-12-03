@@ -1,7 +1,7 @@
 package seg3102
 
 import grails.transaction.Transactional
-import java.util.ArrayList;
+
 import java.sql.Date;
 
 @Transactional
@@ -33,7 +33,7 @@ class PropertyService {
                     country: addressParameter.country
             )
 
-            def myProperty = new Property(
+            def myProperty = new Propertys(
                     type: propertyParameter.type,
                     numBedrooms: propertyParameter.numBedrooms,
                     numBathrooms: propertyParameter.numBathrooms,
@@ -67,7 +67,7 @@ class PropertyService {
      *
      * @param searchParameter
      */
-    public ArrayList<Property> browsePropertyByLocation(Map addressParameter) {
+    public ArrayList<Propertys> browsePropertyByLocation(Map addressParameter) {
 
         ArrayList<Address> addressList
         if (addressParameter.city != "" && addressParameter.province != "" && addressParameter.country != "") {
@@ -88,10 +88,10 @@ class PropertyService {
             addressList = Address.findAll()
         }
 
-        ArrayList<Property> propertyList = new ArrayList()
+        ArrayList<Propertys> propertyList = new ArrayList()
         if (addressList != null) {
             for (a in addressList) {
-                Property myProperty = a.getProperty()
+                Propertys myProperty = a.getProperty()
                 if (myProperty != null) {
                     if (myProperty.deleteStatus == false) {
                         propertyList.add(myProperty)
@@ -112,7 +112,7 @@ class PropertyService {
      */
     public boolean deleteProperty(String propertyId) {
         try {
-            Property myProperty = Property.get(propertyId)
+            Propertys myProperty = Propertys.get(propertyId)
             myProperty.deleteStatus = true
             myProperty.save()
             return true
@@ -127,7 +127,7 @@ class PropertyService {
         println(propertyParameter)
         println(addressParameter)
         try {
-            Property myProperty = Property.get(propertyParameter.propertyId)
+            Propertys myProperty = Propertys.get(propertyParameter.propertyId)
 
             if (propertyParameter.type != "") {
                 myProperty.type = propertyParameter.type
@@ -182,7 +182,7 @@ class PropertyService {
 
     def viewVisitHistory(Date startDate, Date endDate, String propertyId) {
         try {
-            Property property = Property.get(propertyId)
+            Propertys property = Propertys.get(propertyId)
             ArrayList<History> historyList = History.findAllByStartDateGreaterThanAndEndDateLessThan(startDate, endDate)
             return historyList
         } catch (Exception e) {
@@ -194,7 +194,7 @@ class PropertyService {
         try {
             Customer customer = Customer.findByUserName(userName)
             VisitingList visitingList = customer.visitingList
-            Property property = visitingList.property.find { it.id = propertyId }
+            Propertys property = visitingList.property.find { it.id = propertyId }
 
             RentRecord rentRecord = new RentRecord(
                     emailAddress: rentAttributes.emailAddress,

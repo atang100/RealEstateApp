@@ -1,7 +1,6 @@
 package seg3102
 
 import grails.transaction.Transactional
-import seg3102.Owner
 
 @Transactional
 class OwnerService {
@@ -54,10 +53,10 @@ class OwnerService {
      * @param userName
      * @return
      */
-    public ArrayList<Property> ownerViewProperties(String userName) {
+    public ArrayList<Propertys> ownerViewProperties(String userName) {
         try {
             Owner owner = Owner.findByUserName(userName)
-            ArrayList<Property> propertyList = owner.propertys
+            ArrayList<Propertys> propertyList = owner.propertys
             return propertyList
         } catch (Exception e) {
             println("ERRRORRRR" + e)

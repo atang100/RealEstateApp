@@ -2,14 +2,12 @@ package seg3102
 
 import grails.transaction.Transactional
 
-import java.sql.Date
-
 @Transactional
 class VisitingListService {
 
     def addToVisitingList(String propertyId, String userName) {
         try {
-            Property property = Property.get(propertyId)
+            Propertys property = Propertys.get(propertyId)
             Customer customer = Customer.findByUserName(userName)
             VisitingList visitingList = customer.visitingList
             visitingList.addToProperty(property)
@@ -22,7 +20,7 @@ class VisitingListService {
 
     def removeFromVisitingList(String propertyId, String userName) {
         try {
-            Property property = Property.get(propertyId)
+            Propertys property = Propertys.get(propertyId)
             Customer customer = Customer.findByUserName(userName)
             VisitingList visitingList = customer.visitingList
             visitingList.removeFromProperty(property)
@@ -45,7 +43,7 @@ class VisitingListService {
         try {
             Customer customer = Customer.findByUserName(userName)
             VisitingList visitingList = customer.visitingList
-            ArrayList<Property> propertyList = visitingList.property
+            ArrayList<Propertys> propertyList = visitingList.property
             return [visitingList, propertyList]
         } catch (Exception e) {
             //Some exception

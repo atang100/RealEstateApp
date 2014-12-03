@@ -1,6 +1,6 @@
 package seg3102
 
-class Property {
+class Propertys {
 
     String type
     int numBedrooms

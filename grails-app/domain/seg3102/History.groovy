@@ -9,7 +9,7 @@ class History {
     int monthVisits
     int reportingVisits
 
-    static belongsTo = [property: Property]
+    static belongsTo = [property: Propertys]
 
     static constraints = {
     }

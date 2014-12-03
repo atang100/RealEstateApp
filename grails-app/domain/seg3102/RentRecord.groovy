@@ -9,7 +9,7 @@ class RentRecord {
     Date rentalDate
     Time rentalTime
 
-    static belongsTo = [customer: Customer, property: Property]
+    static belongsTo = [customer: Customer, property: Propertys]
 
     static constraints = {
     }

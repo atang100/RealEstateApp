@@ -15,7 +15,7 @@ class VisitingListController {
         addressMap.province = params.province
         addressMap.country = params.country
 
-        ArrayList<Property> propertyList = propertyService.browsePropertyByLocation(addressMap)
+        ArrayList<Propertys> propertyList = propertyService.browsePropertyByLocation(addressMap)
 
         render (view:"index", model: [myProperties:propertyList])
 
