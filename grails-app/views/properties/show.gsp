@@ -16,16 +16,22 @@
 
 <body>
     <table class="table table-striped" style="margin-top:70px">
-        <th>Street Name</th>
-        <th>Street Number</th>
+        <th>Address</th>
+        <th>Number of Bedrooms</th>
+        <th>Number of Bathrooms</th>
+        <th>Number of Other Rooms</th>
         <th>Rent</th>
+        <th>Deletion Status</th>
         <th></th>
         <th></th>
        <g:each in="${myProperties}" var="property">
             <tr>
-                <td>${property.properties.address.streetName}</td>
-                <td>${property.properties.address.streetNumber}</td>
-                <td>${property.properties.rent}</td>
+                <td>${property.properties.address.streetNumber} ${property.properties.address.streetName}</td>
+                <td>${property.properties.numBedrooms}</td>
+                <td>${property.properties.numBathrooms}</td>
+                <td>${property.properties.numOtherRooms}</td>
+                <td>$${property.properties.rent}</td>
+                <td>${property.properties.deleteStatus}</td>
                 <td>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-sm">

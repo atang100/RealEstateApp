@@ -33,7 +33,7 @@ class PropertiesController {
         propertyMap.rent = params.rent
         propertyMap.deleteStatus = false
 
-        propertyService.addProperty(propertyMap,addressMap,session.user.userName)
+        propertyService.addProperty(propertyMap,addressMap, session.user.userName)
 
         flash.message = "Property Successfully Created"
 
@@ -61,7 +61,7 @@ class PropertiesController {
         propertyMap.deleteStatus = false
         propertyMap.propertyId = propertyId
 
-        propertyService.updateProperty(propertyMap,addressMap,session.user.userName)
+        propertyService.updateProperty(propertyMap,addressMap)
 
         redirect(controller:"properties", action:"show")
     }

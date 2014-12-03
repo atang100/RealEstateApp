@@ -89,10 +89,14 @@ class PropertyService {
         }
 
         ArrayList<Property> propertyList = new ArrayList()
-        for (a in addressList) {
-            Property myProperty = a.getProperty()
-            if (myProperty.deleteStatus == false) {
-                propertyList.add(myProperty)
+        if (addressList != null) {
+            for (a in addressList) {
+                Property myProperty = a.getProperty()
+                if (myProperty != null) {
+                    if (myProperty.deleteStatus == false) {
+                        propertyList.add(myProperty)
+                    }
+                }
             }
         }
         return propertyList
@@ -108,37 +112,41 @@ class PropertyService {
      */
     public boolean deleteProperty(String propertyId) {
         try {
-            Property property = Property.get(propertyId)
-            property.deleteStatus = true
+            Property myProperty = Property.get(propertyId)
+            myProperty.deleteStatus = true
+            myProperty.save()
             return true
         } catch (Exception e) {
+            println("FAILED TO DELETE PROPERTY")
+            println(e)
             return false
         }
     }
 
-    def updateProperty(Map propertyParameter, Map addressParameter, String userName) {
+    def updateProperty(Map propertyParameter, Map addressParameter) {
         println(propertyParameter)
         println(addressParameter)
         try {
-            Property property = Property.get(propertyParameter.propertyId)
-            println(property)
+            Property myProperty = Property.get(propertyParameter.propertyId)
+
             if (propertyParameter.type != null) {
-                property.type = propertyParameter.type
+                myProperty.type = propertyParameter.type
             }
             if (propertyParameter.numBedrooms != null) {
-                property.numBedrooms = propertyParameter.numBedrooms
+                myProperty.numBedrooms = Integer.parseInt(propertyParameter.numBedrooms)
             }
             if (propertyParameter.numBathrooms != null) {
-                property.numBathrooms = propertyParameter.numBathrooms
+                myProperty.numBathrooms = Integer.parseInt(propertyParameter.numBathrooms)
             }
             if (propertyParameter.numOtherRooms != null) {
-                property.numOtherRooms = propertyParameter.numOtherRooms
+                myProperty.numOtherRooms = Integer.parseInt(propertyParameter.numOtherRooms)
             }
             if (propertyParameter.rent != null) {
-                property.rent = propertyParameter.rent
+                myProperty.rent = Integer.parseInt(propertyParameter.rent)
             }
+            myProperty.save(failOnError:true)
 
-            Address address = property.address
+            Address address = myProperty.address
             if (addressParameter.streetName != null) {
                 address.streetName = addressParameter.streetName
             }
@@ -160,11 +168,13 @@ class PropertyService {
             if (addressParameter.country != null) {
                 address.country = addressParameter.country
             }
-            address.save()
-            property.save()
+            address.save(failOnError:true)
+
             return true
 
         } catch (Exception e) {
+            println("UPDATE PROPERTY FAILED")
+            println(e)
             return false
             //Most likely exception will be not finding address or property based on ID
         }
