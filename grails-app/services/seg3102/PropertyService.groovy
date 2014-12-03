@@ -80,9 +80,9 @@ class PropertyService {
             addressList = Address.findAllByCityAndProvince(addressParameter.city, addressParameter.province)
         } else if (addressParameter.city != "") {
             addressList = Address.findAllByCity(addressParameter.city)
-        } else if (addressParameter.city != "") {
+        } else if (addressParameter.province != "") {
             addressList = Address.findAllByCity(addressParameter.province)
-        } else if (addressParameter.city != "") {
+        } else if (addressParameter.country != "") {
             addressList = Address.findAllByCity(addressParameter.country)
         } else {
             addressList = Address.findAll()
