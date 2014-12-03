@@ -70,19 +70,19 @@ class PropertyService {
     public ArrayList<Property> browsePropertyByLocation(Map addressParameter) {
 
         ArrayList<Address> addressList
-        if (addressParameter.city != null && addressParameter.province != null && addressParameter.country != null) {
+        if (addressParameter.city != "" && addressParameter.province != "" && addressParameter.country != "") {
             addressList = Address.findAllByCityAndProvinceAndCountry(addressParameter.city, addressParameter.province, addressParameter.country)
-        } else if (addressParameter.province != null && addressParameter.country != null) {
+        } else if (addressParameter.province != "" && addressParameter.country != "") {
             addressList = Address.findAllByProvinceAndCountry(addressParameter.province, addressParameter.country)
-        } else if (addressParameter.city != null && addressParameter.country != null) {
+        } else if (addressParameter.city != "" && addressParameter.country != "") {
             addressList = Address.findAllByCityAndCountry(addressParameter.city, addressParameter.country)
-        } else if (addressParameter.city != null && addressParameter.province != null) {
+        } else if (addressParameter.city != "" && addressParameter.province != "") {
             addressList = Address.findAllByCityAndProvince(addressParameter.city, addressParameter.province)
-        } else if (addressParameter.city != null) {
+        } else if (addressParameter.city != "") {
             addressList = Address.findAllByCity(addressParameter.city)
-        } else if (addressParameter.city != null) {
+        } else if (addressParameter.city != "") {
             addressList = Address.findAllByCity(addressParameter.province)
-        } else if (addressParameter.city != null) {
+        } else if (addressParameter.city != "") {
             addressList = Address.findAllByCity(addressParameter.country)
         } else {
             addressList = Address.findAll()
@@ -129,43 +129,43 @@ class PropertyService {
         try {
             Property myProperty = Property.get(propertyParameter.propertyId)
 
-            if (propertyParameter.type != null) {
+            if (propertyParameter.type != "") {
                 myProperty.type = propertyParameter.type
             }
-            if (propertyParameter.numBedrooms != null) {
+            if (propertyParameter.numBedrooms != "") {
                 myProperty.numBedrooms = Integer.parseInt(propertyParameter.numBedrooms)
             }
-            if (propertyParameter.numBathrooms != null) {
+            if (propertyParameter.numBathrooms != "") {
                 myProperty.numBathrooms = Integer.parseInt(propertyParameter.numBathrooms)
             }
-            if (propertyParameter.numOtherRooms != null) {
+            if (propertyParameter.numOtherRooms != "") {
                 myProperty.numOtherRooms = Integer.parseInt(propertyParameter.numOtherRooms)
             }
-            if (propertyParameter.rent != null) {
+            if (propertyParameter.rent != "") {
                 myProperty.rent = Integer.parseInt(propertyParameter.rent)
             }
             myProperty.save(failOnError:true)
 
             Address address = myProperty.address
-            if (addressParameter.streetName != null) {
+            if (addressParameter.streetName != "") {
                 address.streetName = addressParameter.streetName
             }
-            if (addressParameter.streetNumber != null) {
+            if (addressParameter.streetNumber != "") {
                 address.streetNumber = addressParameter.streetNumber
             }
-            if (addressParameter.aptNumber != null) {
+            if (addressParameter.aptNumber != "") {
                 address.aptNumber = addressParameter.aptNumber
             }
-            if (addressParameter.city != null) {
+            if (addressParameter.city != "") {
                 address.city = addressParameter.city
             }
-            if (addressParameter.postalCode != null) {
+            if (addressParameter.postalCode != "") {
                 address.postalCode = addressParameter.postalCode
             }
-            if (addressParameter.province != null) {
+            if (addressParameter.province != "") {
                 address.province = addressParameter.province
             }
-            if (addressParameter.country != null) {
+            if (addressParameter.country != "") {
                 address.country = addressParameter.country
             }
             address.save(failOnError:true)
